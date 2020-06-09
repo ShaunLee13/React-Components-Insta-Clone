@@ -10,7 +10,6 @@ import PostsPage from './components/PostsContainer/PostsPage';
 import SearchBar from "./components/SearchBar/SearchBarContainer";
 // import the PostsPage and SearchBar and add them to the App
 
-
 const App = () => {
 
   return (

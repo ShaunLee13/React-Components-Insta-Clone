@@ -3,32 +3,38 @@ import React from "react";
 import CommentSection from "../CommentSection/CommentSectionContainer";
 import LikeSection from "./LikeSection";
 import PostHeader from "./PostHeader";
+import {useState} from 'react'
 
 import "./Posts.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // pass props in this file to
 const Post = props => {
-  // set up state for the likes
-
+  const { post } = props
+  const [likes, setLikes] = useState(post.likes)
+  const likeCounter = evt => {
+    setLikes(likes+1)
+  }
+  
   return (
     <div className="post-border">
       <PostHeader
-        username={props.post.username}
+        username={post.username}
         thumbnailUrl={
-          props.post.thumbnailUrl
+          post.thumbnailUrl
         }
       />
       <div className="post-image-wrapper">
         <img
           alt="post thumbnail"
           className="post-image"
-          src={props.post.imageUrl}
+          src={post.imageUrl}
         />
       </div>
-      <LikeSection />
+      <LikeSection likeCount={likes} like={likeCounter}/>
       <CommentSection
-        postId={props.post.imageUrl}
-        comments={props.post.comments}
+        postId={post.imageUrl}
+        comments={post.comments}
       />
     </div>
   );
